@@ -18,10 +18,10 @@ Our search process employs FID as a performance estimation. The FID stats used i
 | LSUN Cat   |[LSUN Cat](https://drive.google.com/file/d/1_mKlQezFR12UrKLLi0uji-iPKM0ChgP5/view?usp=drive_link)|
 | LSUN Bedroom |[LSUN bedroom](https://drive.google.com/file/d/1C9seBQ5zq0bVyPXjRXy5U7I_Mz_G1nY9/view?usp=drive_link)|
 
-## [Search for Optimal Time Steps](Search_for_timesteps)
-Use the script below to search the optimal time steps. Ensure that you've properly configured `--model_path`, `--classifier_path` (specifically for the class-conditional ImageNet-64 Guided-Diffusion model), and `--ref_path` to point to your downloaded checkpoint and FID stats. You can also set `--time_step` to specify the target length of searched time steps. 
+## Search for Optimal Time Steps
+Use the script below to search the optimal time steps. Ensure that you've properly configured `--model_path`, `--classifier_path` (specifically for the class-conditional ImageNet-64 Guided-Diffusion model), and `--ref_path` to point to your downloaded checkpoint and FID stats. You can also set `--time_step` to specify the target length of searched time steps. When `--time_step` is larger than 10, it is recommended to set the number of samples used for performance estimation in the search process to less than 1000 to accelerate the search process.
 
-When the search process completes, you can find the file 'log.txt' in the `--save_dir` directory. To identify the best results from each search iteration, search for the keyword 'top' in this file. For optimal outcomes, select the top candidates from the final iteration.
+When the search process completes, you can find the file `log.txt` in the `--save_dir` directory. To identify the best results from each search iteration, search for the keyword `top` in this file. For optimal outcomes, select the top candidates from the final iteration.
 
 Search time steps sequence for class-conditional ImageNet 64x64 Guided-Diffusion model:
 ```
@@ -41,7 +41,7 @@ bash search_lsun_bedroom.sh
 ## Search for Time Steps and Architecture
 When searching for time steps and architectures, we use the full noise prediction network and search time steps only in the first 5 iterations of the evolutionary search. Then, we search the time steps and model architectures together in the remaining search process. Therefore, ensure that the total `max_epochs` is set to a value greater than 5. You can also set `--time_step` to specify the target length of searched time steps, and `--index_step` to specify the maximum total number of architecture layers (referenced as $N_{max}$ in our paper). 
 
-You can identify the searched results from the 'log.txt' in the `--save_dir` directory as outlined in [previou section](Search_for_timesteps). In this file, 'timesteps' is the searched time steps, while 'skip_layers' is the pruned architecture layers at each time steps. 
+You can identify the searched results from the 'log.txt' in the `--save_dir` directory as outlined in previou section. In this file, 'timesteps' is the searched time steps, while 'skip_layers' is the pruned architecture layers at each time steps. 
 
 Search time steps sequence and architecture for Guided-Diffusion on ImageNet 64x64:
 ```
