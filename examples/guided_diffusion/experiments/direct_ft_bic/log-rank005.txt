@@ -1,0 +1,48 @@
+Logging to experiments/direct_ft_bic/
+creating model...
+input shape change: torch.Size([256, 6, 3, 3])
+loading model from: ../models/256_adm_uncond.pt complete.
+creating data loader...
+training...
+-------------------------
+| grad_norm  | 0.0222   |
+| loss       | 0.0328   |
+| loss_q0    | 0.0802   |
+| loss_q1    | 0.00107  |
+| loss_q2    | 0.000261 |
+| loss_q3    | 0.00012  |
+| mse        | 0.0294   |
+| mse_q0     | 0.0716   |
+| mse_q1     | 0.00106  |
+| mse_q2     | 0.000259 |
+| mse_q3     | 0.000118 |
+| param_norm | 1.36e+03 |
+| samples    | 256      |
+| step       | 0        |
+| vb         | 0.00347  |
+| vb_q0      | 0.00854  |
+| vb_q1      | 7.93e-06 |
+| vb_q2      | 2.41e-06 |
+| vb_q3      | 1.42e-06 |
+-------------------------
+-------------------------
+| grad_norm  | 0.0325   |
+| loss       | 0.0147   |
+| loss_q0    | 0.054    |
+| loss_q1    | 0.0053   |
+| loss_q2    | 0.00107  |
+| loss_q3    | 7.35e-05 |
+| mse        | 0.0141   |
+| mse_q0     | 0.0516   |
+| mse_q1     | 0.00526  |
+| mse_q2     | 0.00106  |
+| mse_q3     | 7.26e-05 |
+| param_norm | 1.36e+03 |
+| samples    | 2.82e+03 |
+| step       | 10       |
+| vb         | 0.000606 |
+| vb_q0      | 0.00247  |
+| vb_q1      | 3.88e-05 |
+| vb_q2      | 9.31e-06 |
+| vb_q3      | 8.6e-07  |
+-------------------------
