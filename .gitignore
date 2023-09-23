@@ -1,0 +1,7 @@
+*.npz
+*.pt
+.vscode/
+.DS_Store
+
+eggs/
+.eggs/
