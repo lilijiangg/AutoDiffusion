@@ -742,6 +742,7 @@ def create_argparser():
         max_prun=0.0,
         min_prun=0.0,
         ref_path='',
+        MASTER_PORT='12345',
     )
     defaults.update(model_and_diffusion_defaults())
     defaults.update(classifier_defaults())
