@@ -13,9 +13,8 @@ Figure 1: Left: We propose to search the optimal time steps sequence and corresp
 <br/>
 
 ## Examples
-### AutoDiffusion for Guided-Diffusion
-We provide the PyTorch implementation of AutoDiffusion for Guided-Diffusion in `examples/guided_diffusion`
+We provide the PyTorch implementation of AutoDiffusion for Guided-Diffusion in `examples/guided_diffusion` and for Stable Diffusion in `examples/Stable Diffusion`.
 
 ## Acknowledgment
-This repository is built on reusing codes of [Guided-Diffusion](https://github.com/openai/guided-diffusion). 
-We recommend using their code repository in your research and reading the [related article](https://github.com/openai/guided-diffusion).
+This repository is built on reusing codes of [Guided-Diffusion](https://github.com/openai/guided-diffusion) and [Stable Diffusion](https://github.com/CompVis/stable-diffusion). 
+We recommend using their code repository in your research and reading the [related article](https://arxiv.org/abs/2112.10752).
