@@ -24,82 +24,82 @@ FID_POOL_NAME = "pool_3:0"
 FID_SPATIAL_NAME = "mixed_6/conv:0"
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("ref_batch", help="path to reference batch npz file")
-    parser.add_argument("sample_batch", help="path to sample batch npz file")
-    args = parser.parse_args()
+# def main():
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument("ref_batch", help="path to reference batch npz file")
+#     parser.add_argument("sample_batch", help="path to sample batch npz file")
+#     args = parser.parse_args()
 
-    config = tf.ConfigProto(
-        allow_soft_placement=True  # allows DecodeJpeg to run on CPU in Inception graph
-    )
-    config.gpu_options.allow_growth = True
-    evaluator = Evaluator_v1(tf.Session(config=config))
+#     config = tf.ConfigProto(
+#         allow_soft_placement=True  # allows DecodeJpeg to run on CPU in Inception graph
+#     )
+#     config.gpu_options.allow_growth = True
+#     evaluator = Evaluator_v1(tf.Session(config=config))
 
-    print("warming up TensorFlow...")
-    # This will cause TF to print a bunch of verbose stuff now rather
-    # than after the next print(), to help prevent confusion.
-    evaluator.warmup()
+#     print("warming up TensorFlow...")
+#     # This will cause TF to print a bunch of verbose stuff now rather
+#     # than after the next print(), to help prevent confusion.
+#     evaluator.warmup()
 
-    print("computing reference batch activations...")
-    # ref_acts = evaluator.read_activations(args.ref_batch)
-    print("computing/reading reference batch statistics...")
-    # ref_stats, ref_stats_spatial = evaluator.read_statistics(args.ref_batch, ref_acts)
-    import pickle
-    f = open('/data/lj_data/cifar_10/ref_stats_test.pkl','rb')
-    ref_stats = pickle.load(f)
-    f.close()
-    f = open('/data/lj_data/cifar_10/ref_stats_spatial_test.pkl','rb')
-    ref_stats_spatial = pickle.load(f)
-    f.close()
+#     print("computing reference batch activations...")
+#     # ref_acts = evaluator.read_activations(args.ref_batch)
+#     print("computing/reading reference batch statistics...")
+#     # ref_stats, ref_stats_spatial = evaluator.read_statistics(args.ref_batch, ref_acts)
+#     import pickle
+#     f = open('/data/lj_data/cifar_10/ref_stats_test.pkl','rb')
+#     ref_stats = pickle.load(f)
+#     f.close()
+#     f = open('/data/lj_data/cifar_10/ref_stats_spatial_test.pkl','rb')
+#     ref_stats_spatial = pickle.load(f)
+#     f.close()
 
-    print("computing sample batch activations...")
-    sample_data = np.load(args.sample_batch)
-    sample_data = sample_data['arr_0']
-    import pdb
-    pdb.set_trace()
-    sample_acts = evaluator.compute_activations(sample_data, 64)
-    # sample_acts = evaluator.read_activations(args.sample_batch)
-    print("computing/reading sample batch statistics...")
-    sample_stats, sample_stats_spatial = evaluator.read_statistics(args.sample_batch, sample_acts)
+#     print("computing sample batch activations...")
+#     sample_data = np.load(args.sample_batch)
+#     sample_data = sample_data['arr_0']
+#     import pdb
+#     pdb.set_trace()
+#     sample_acts = evaluator.compute_activations(sample_data, 64)
+#     # sample_acts = evaluator.read_activations(args.sample_batch)
+#     print("computing/reading sample batch statistics...")
+#     sample_stats, sample_stats_spatial = evaluator.read_statistics(args.sample_batch, sample_acts)
 
-    print("Computing evaluations...")
-    print("Inception Score:", evaluator.compute_inception_score(sample_acts[0]))
-    print("FID:", sample_stats.frechet_distance(ref_stats))
-    print("sFID:", sample_stats_spatial.frechet_distance(ref_stats_spatial))
-    # prec, recall = evaluator.compute_prec_recall(ref_acts[0], sample_acts[0])
-    # print("Precision:", prec)
-    # print("Recall:", recall)
+#     print("Computing evaluations...")
+#     print("Inception Score:", evaluator.compute_inception_score(sample_acts[0]))
+#     print("FID:", sample_stats.frechet_distance(ref_stats))
+#     print("sFID:", sample_stats_spatial.frechet_distance(ref_stats_spatial))
+#     # prec, recall = evaluator.compute_prec_recall(ref_acts[0], sample_acts[0])
+#     # print("Precision:", prec)
+#     # print("Recall:", recall)
 
-    print("computing sample batch activations...")
-    sample_data = np.load('/data/lj_data/guide_denoising/cifar_10_32x32/train_ofa_predict_xstart/ema_540000_4/samples_1280x32x32x3.npz')
-    sample_data = sample_data['arr_0']
-    import pdb
-    pdb.set_trace()
-    sample_acts = evaluator.compute_activations(sample_data, 64)
-    # sample_acts = evaluator.read_activations(args.sample_batch)
-    print("computing/reading sample batch statistics...")
-    sample_stats, sample_stats_spatial = evaluator.read_statistics(args.sample_batch, sample_acts)
+#     print("computing sample batch activations...")
+#     sample_data = np.load('/data/lj_data/guide_denoising/cifar_10_32x32/train_ofa_predict_xstart/ema_540000_4/samples_1280x32x32x3.npz')
+#     sample_data = sample_data['arr_0']
+#     import pdb
+#     pdb.set_trace()
+#     sample_acts = evaluator.compute_activations(sample_data, 64)
+#     # sample_acts = evaluator.read_activations(args.sample_batch)
+#     print("computing/reading sample batch statistics...")
+#     sample_stats, sample_stats_spatial = evaluator.read_statistics(args.sample_batch, sample_acts)
 
-    print("Computing evaluations...")
-    print("Inception Score:", evaluator.compute_inception_score(sample_acts[0]))
-    print("FID:", sample_stats.frechet_distance(ref_stats))
-    print("sFID:", sample_stats_spatial.frechet_distance(ref_stats_spatial))
+#     print("Computing evaluations...")
+#     print("Inception Score:", evaluator.compute_inception_score(sample_acts[0]))
+#     print("FID:", sample_stats.frechet_distance(ref_stats))
+#     print("sFID:", sample_stats_spatial.frechet_distance(ref_stats_spatial))
 
-    print("computing sample batch activations...")
-    sample_data = np.load('/data/lj_data/guide_denoising/cifar_10_32x32/train_ofa_predict_xstart/ema_240000_40/samples_1280x32x32x3.npz')
-    sample_data = sample_data['arr_0']
-    import pdb
-    pdb.set_trace()
-    sample_acts = evaluator.compute_activations(sample_data, 64)
-    # sample_acts = evaluator.read_activations(args.sample_batch)
-    print("computing/reading sample batch statistics...")
-    sample_stats, sample_stats_spatial = evaluator.read_statistics(args.sample_batch, sample_acts)
+#     print("computing sample batch activations...")
+#     sample_data = np.load('/data/lj_data/guide_denoising/cifar_10_32x32/train_ofa_predict_xstart/ema_240000_40/samples_1280x32x32x3.npz')
+#     sample_data = sample_data['arr_0']
+#     import pdb
+#     pdb.set_trace()
+#     sample_acts = evaluator.compute_activations(sample_data, 64)
+#     # sample_acts = evaluator.read_activations(args.sample_batch)
+#     print("computing/reading sample batch statistics...")
+#     sample_stats, sample_stats_spatial = evaluator.read_statistics(args.sample_batch, sample_acts)
 
-    print("Computing evaluations...")
-    print("Inception Score:", evaluator.compute_inception_score(sample_acts[0]))
-    print("FID:", sample_stats.frechet_distance(ref_stats))
-    print("sFID:", sample_stats_spatial.frechet_distance(ref_stats_spatial))
+#     print("Computing evaluations...")
+#     print("Inception Score:", evaluator.compute_inception_score(sample_acts[0]))
+#     print("FID:", sample_stats.frechet_distance(ref_stats))
+#     print("sFID:", sample_stats_spatial.frechet_distance(ref_stats_spatial))
 
 
 class InvalidFIDException(Exception):
