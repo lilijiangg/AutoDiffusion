@@ -50,21 +50,11 @@ def main():
     ref_stats, ref_stats_spatial = evaluator.read_statistics(args.ref_batch, ref_acts)
 
     import pickle
-    f = open('/userhome/llj/data/imagenet64/imagenet_official_ref_stats1.pkl','wb')
+    f = open('imagenet_official_ref_stats.pkl','wb')
     pickle.dump(ref_stats, f)
     f.close()
-    f = open('/userhome/llj/data/imagenet64/imagenet_official_ref_stats_spatial1.pkl','wb')
-    pickle.dump(ref_stats_spatial, f)
-    f.close()
-
-    import pickle
-    
-
-    # f = open('/userhome/llj/dataset/imagenet64/imagenet_official_ref_stats.pkl','rb')
-    # ref_stats = pickle.load(f)
-    # f.close()
-    # f = open('/userhome/llj/dataset/imagenet64/imagenet_official_ref_stats_spatial.pkl','rb')
-    # ref_stats_spatial = pickle.load(f)
+    # f = open('imagenet_official_ref_stats_spatial.pkl','wb')
+    # pickle.dump(ref_stats_spatial, f)
     # f.close()
 
     print("computing sample batch activations...")
