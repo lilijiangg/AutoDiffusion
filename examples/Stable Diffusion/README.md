@@ -21,7 +21,7 @@ path/to/dataset
 │  ├── ...
 ```
 
-Our search process employs FID as a performance estimation. The FID stats of COCO datasets used in our experiments can be accessed via this [link](https://drive.google.com/drive/folders/1tza3EPmxYTLVNErKRrgWfmVu0XbNynMm) on Google Drive.
+Our search process employs FID as a performance estimation. The FID stats of COCO datasets used in our experiments can be accessed via this [link](https://drive.google.com/drive/folders/1cstf50gjbTpZPphU4GpoUgIP6A9iiIAA?usp=drive_link) on Google Drive.
 
 ## Search for Optimal Time Steps
 Before starting the search process, ensure that `data_root` in `configs/stable-diffusion/v1-inference_coco.yaml` is correctly configured to point to the path of your downloaded dataset. Then, follow the scripts below to search for the optimal time steps. It's essential to set both `n_samples` in these scripts and `batch_size` in `configs/stable-diffusion/v1-inference_coco.yaml` to desired your batch size.
